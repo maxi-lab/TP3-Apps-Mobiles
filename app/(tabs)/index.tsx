@@ -1,15 +1,23 @@
 import LogInForm from '@/components/LogInForm';
-import { Image, StyleSheet, Platform } from 'react-native';
-import { View } from 'react-native-reanimated/lib/typescript/Animated';
+import { StatusBar } from 'expo-status-bar';
+import { Image, StyleSheet, Pressable, View, Text} from 'react-native';
+import { blue } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 
 export default function HomeScreen() {
   return (
-    <>
-      <View style={styles.titleContainer}>
-        
+    
+      <View style={styles.container}>
+        <StatusBar style='auto'/>
+        <LogInForm/>
+        <Pressable
+            style={{backgroundColor:"white",width:115,borderRadius:10,margin:10}}
+            onPress={()=>alert('Pasando a la pantalla de registro')}>
+                <Text>
+                    Registrate
+                </Text>
+        </Pressable>
       </View>
-      
-    </>
+    
   );
 }
 
@@ -30,4 +38,10 @@ const styles = StyleSheet.create({
     left: 0,
     position: 'absolute',
   },
+  container:{
+    flex:1,
+    backgroundColor:'#fd0a60',
+    alignItems:'center',
+    justifyContent:'center',
+  }
 });
