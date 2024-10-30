@@ -1,7 +1,7 @@
 import LogInForm from '@/components/LogInForm';
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Pressable, View, Text} from 'react-native';
-import { blue } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
+import { StyleSheet, Pressable, View, Text} from 'react-native';
+
 
 export default function HomeScreen() {
   return (
