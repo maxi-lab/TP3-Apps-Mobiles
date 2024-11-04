@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { FIREBASE_AUTH } from '@/FirebaseConfig';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@firebase/auth';
 
 
 	const Login = () => {
@@ -48,7 +48,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
         }
     }
         
-//onchangetext puede fallar
+
         return (
             <View style={[styles.container]}>
 			<Text style={[styles.header]}>
@@ -61,7 +61,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 				<TextInput
 					style={[styles.input]}
 					placeholder="Ingresa tu Email"
-					placeholderTextColor="#888"
+					placeholderTextColor="#FFFFFF"
 					value={email}
 					onChangeText={(text) => setEmail(text)}
 				/>
@@ -70,7 +70,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 				<TextInput
 					style={[styles.input]}
 					placeholder="Ingresa tu contraseña"
-					placeholderTextColor="#888"
+					placeholderTextColor="#FFFFFF"
 					secureTextEntry
 					value={password}
 					onChangeText={(text) => setPassword(text)}
@@ -89,66 +89,66 @@ export default Login;
 
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		padding: 20,
-	},
-	containerLight: {
-		backgroundColor: '#f5f5f5',
-	},
-	containerDark: {
-		backgroundColor: '#121212',
-	},
-	header: {
-		fontSize: 24,
-		fontWeight: 'bold',
-		textAlign: 'center',
-		marginBottom: 20,
-	},
-	headerLight: {
-		color: '#333',
-	},
-	headerDark: {
-		color: '#fff',
-	},
-	inputContainer: {
-		marginBottom: 20,
-	},
-	label: {
-		fontSize: 16,
-		marginBottom: 5,
-		color: '#666',
-	},
-	input: {
-		height: 40,
-		borderWidth: 1,
-		borderRadius: 5,
-		paddingHorizontal: 10,
-		marginBottom: 12,
-	},
-	inputLight: {
-		borderColor: '#ccc',
-		color: '#333',
-		backgroundColor: '#fff',
-	},
-	inputDark: {
-		borderColor: '#444',
-		color: '#fff',
-		backgroundColor: '#333',
-	},
-	loginButton: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#007bff',
-		paddingVertical: 10,
-		borderRadius: 5,
-		marginTop: 10,
-	},
-	loginButtonText: {
-		color: 'white',
-		fontSize: 18,
-		marginLeft: 10,
-	},
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        padding: 20,
+    },
+    containerLight: {
+        backgroundColor: '#f5f5f5',
+    },
+    containerDark: {
+        backgroundColor: '#121212',
+    },
+    header: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: 20,
+    },
+    headerLight: {
+        color: '#333',
+    },
+    headerDark: {
+        color: '#fff',
+    },
+    inputContainer: {
+        marginBottom: 20,
+    },
+    label: {
+        fontSize: 16,
+        marginBottom: 5,
+        color: '#FFFFFF',
+    },
+    input: {
+        height: 40,
+        borderWidth: 1,
+        borderRadius: 5,
+        paddingHorizontal: 10,
+        marginBottom: 12,
+    },
+    inputLight: {
+        borderColor: '#ccc',
+        color: '#FFFFFF', // Cambiado a blanco
+        backgroundColor: '#FFFFFF',
+    },
+    inputDark: {
+        borderColor: '#444',
+        color: '#FFFFFF', // Este ya estaba bien
+        backgroundColor: '#333',
+    },
+    loginButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#007bff',
+        paddingVertical: 10,
+        borderRadius: 5,
+        marginTop: 10,
+    },
+    loginButtonText: {
+        color: 'white',
+        fontSize: 18,
+        marginLeft: 10,
+    },
 });
