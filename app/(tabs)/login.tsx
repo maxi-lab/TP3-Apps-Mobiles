@@ -25,7 +25,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@fir
         try {
             const response = await signInWithEmailAndPassword(auth, email, password);
             console.log(response);
-            alert('revisa el email')
+            alert('Funca')
         } catch (error) {
             console.log(error);
             alert('fallo de inicio de sesion');
@@ -39,7 +39,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@fir
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password);
             console.log(response);
-            alert('revisa el email')
+            alert('Funco todo')
         } catch (error) {
             console.log(error);
             alert('fallo de inicio de sesion');
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingHorizontal: 10,
         marginBottom: 12,
+        backgroundColor: '#FFFFFF',
     },
     inputLight: {
         borderColor: '#ccc',
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     inputDark: {
         borderColor: '#444',
         color: '#FFFFFF', // Este ya estaba bien
-        backgroundColor: '#333',
+        backgroundColor: '#FFFFFF',
     },
     loginButton: {
         flexDirection: 'row',
