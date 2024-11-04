@@ -1,92 +1,91 @@
 import React, { useState } from 'react';
 import {
-	Alert,
-	StyleSheet,
-	Text,
-	View,
-	TextInput,
-	TouchableOpacity,
-	useColorScheme,
-    Button,
+    Alert,
+    StyleSheet,
+    Text,
+    View,
+    TextInput,
+    TouchableOpacity,
+    useColorScheme,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { FIREBASE_AUTH } from '@/FirebaseConfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@firebase/auth';
 
-
-	const Login = () => {
-		const [email, setEmail] = useState('');
-        const [password, setPassword] = useState('');
-        const [loading, setLoading] = useState(false);
-        const auth = FIREBASE_AUTH;
+const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const auth = FIREBASE_AUTH;
+    const isDarkMode = useColorScheme() === 'dark';
 
     const signIn = async () => {
         setLoading(true);
         try {
             const response = await signInWithEmailAndPassword(auth, email, password);
             console.log(response);
-            alert('Funca')
+            alert('Funciona');
         } catch (error) {
             console.log(error);
-            alert('fallo de inicio de sesion');
+            alert('Fallo de inicio de sesión');
         } finally {
             setLoading(false);
         }
-    }
+    };
 
-    const singUp = async () => {
+    const signUp = async () => {
         setLoading(true);
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password);
             console.log(response);
-            alert('Funco todo')
+            alert('Registrado con éxito');
         } catch (error) {
             console.log(error);
-            alert('fallo de inicio de sesion');
+            alert('Fallo en el registro');
         } finally {
             setLoading(false);
         }
-    }
-        
+    };
 
-        return (
-            <View style={[styles.container]}>
-			<Text style={[styles.header]}>
-				Iniciar Sesión
-			</Text>
+    return (
+        <View style={[styles.container, isDarkMode ? styles.containerDark : styles.containerLight]}>
+            <Text style={[styles.header, isDarkMode ? styles.headerDark : styles.headerLight]}>
+                Iniciar Sesión
+            </Text>
 
-			<View style={styles.inputContainer}>
-				<Text style={styles.label}>Email</Text>
-                
-				<TextInput
-					style={[styles.input]}
-					placeholder="Ingresa tu Email"
-					placeholderTextColor="#FFFFFF"
-					value={email}
-					onChangeText={(text) => setEmail(text)}
-				/>
-				
-				<Text style={styles.label}>Contraseña</Text>
-				<TextInput
-					style={[styles.input]}
-					placeholder="Ingresa tu contraseña"
-					placeholderTextColor="#FFFFFF"
-					secureTextEntry
-					value={password}
-					onChangeText={(text) => setPassword(text)}
-				/>
+            <View style={styles.inputContainer}>
+                <Text style={isDarkMode ? styles.labelDark : styles.labelLight}>Email</Text>
+                <TextInput
+                    style={[styles.input, isDarkMode ? styles.inputDark : styles.inputLight]}
+                    placeholder="Ingresa tu Email"
+                    placeholderTextColor={isDarkMode ? '#ccc' : '#666'}
+                    value={email}
+                    onChangeText={(text) => setEmail(text)}
+                />
 
-                <Button title='Login' onPress={signIn}></Button>
-                <Button title='Registrarse' onPress={singUp}></Button>
-			</View>
+                <Text style={isDarkMode ? styles.labelDark : styles.labelLight}>Contraseña</Text>
+                <TextInput
+                    style={[styles.input, isDarkMode ? styles.inputDark : styles.inputLight]}
+                    placeholder="Ingresa tu contraseña"
+                    placeholderTextColor={isDarkMode ? '#ccc' : '#666'}
+                    secureTextEntry
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
+                />
+            </View>
 
-            
-		</View>
-        );
-	};
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.button} onPress={signIn} disabled={loading}>
+                    <Text style={styles.buttonText}>Login</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={signUp} disabled={loading}>
+                    <Text style={styles.buttonText}>Registrarse</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    );
+};
 
 export default Login;
-
 
 const styles = StyleSheet.create({
     container: {
@@ -115,10 +114,15 @@ const styles = StyleSheet.create({
     inputContainer: {
         marginBottom: 20,
     },
-    label: {
+    labelLight: {
         fontSize: 16,
         marginBottom: 5,
-        color: '#FFFFFF',
+        color: 'black',
+    },
+    labelDark: {
+        fontSize: 16,
+        marginBottom: 5,
+        color: 'white',
     },
     input: {
         height: 40,
@@ -126,30 +130,33 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingHorizontal: 10,
         marginBottom: 12,
-        backgroundColor: '#FFFFFF',
     },
     inputLight: {
         borderColor: '#ccc',
-        color: '#FFFFFF', // Cambiado a blanco
-        backgroundColor: '#FFFFFF',
+        color: '#333',
+        backgroundColor: '#fff',
     },
     inputDark: {
         borderColor: '#444',
-        color: '#FFFFFF', // Este ya estaba bien
-        backgroundColor: '#FFFFFF',
+        color: '#fff',
+        backgroundColor: '#222',
     },
-    loginButton: {
+    buttonContainer: {
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        marginTop: 20,
+    },
+    button: {
+        flex: 1,
         backgroundColor: '#007bff',
         paddingVertical: 10,
-        borderRadius: 5,
-        marginTop: 10,
+        borderRadius: 25,
+        alignItems: 'center',
+        marginHorizontal: 5,
     },
-    loginButtonText: {
-        color: 'white',
-        fontSize: 18,
-        marginLeft: 10,
+    buttonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: '600',
     },
 });
